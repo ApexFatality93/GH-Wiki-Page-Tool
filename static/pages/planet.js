@@ -1,0 +1,80 @@
+"use strict";
+const planetPageData = pageData;
+const planetInputs = globalElements.input;
+const planetOutputs = globalElements.output;
+function planetStartupFunctions() {
+    moonList();
+}
+const planetElements = {
+    input: {
+        moonInputs: 'moonInputs',
+    },
+    output: {}
+};
+updateGlobalElements(planetElements);
+function addMoon(element) {
+    const inputSection = element.parentElement;
+    if (!inputSection)
+        return;
+    const elementList = document.querySelectorAll('[data-moon]');
+    const childIndex = getChildIndex(elementList, 'dataset.moon');
+    const moonInput = 'moon_input' + childIndex;
+    const inputHTML = `<div class="tableCell text removable" data-moon="section${childIndex}">
+		<button class="button is-outlined is-danger icon is-small" title="Remove moon" type="button" data-remove-moon="section${childIndex}">&#10006</button>
+		<label for="${moonInput}">Moon name:</label>
+	</div>
+	<div class="tableCell data" data-moon="section${childIndex}">
+		<input type="text" id="${moonInput}">
+	</div>`;
+    inputSection.insertAdjacentHTML('beforebegin', inputHTML);
+    document.getElementById(moonInput)?.addEventListener('input', moonList);
+    document.querySelector(`[data-remove-moon="section${childIndex}"]`)?.addEventListener('click', () => {
+        removeSpecificSection(`section${childIndex}`, 'moon');
+        enableMoonAdd();
+    });
+    const moonInputSectionCount = document.querySelectorAll('[data-moon]').length / 2;
+    if (moonInputSectionCount + 1 > 4) {
+        element.disabled = true;
+    }
+}
+function enableMoonAdd() {
+    const addButton = planetInputs.moonInputs.querySelector('button');
+    if (addButton)
+        addButton.disabled = false;
+    moonList();
+}
+function moonList() {
+    const moonInputs = document.querySelectorAll('[data-moon] input');
+    const moons = [];
+    for (const input of moonInputs) {
+        if (input.value)
+            moons.push(`[[${input.value}]]`);
+    }
+    planetOutputs.moonList.innerText = moons.join(', ');
+    planetPageData.moons = moons;
+    moonSentence();
+}
+function moonSentence() {
+    const moons = planetPageData.moons;
+    const output = (!moons || moons.length === 0)
+        ? 'This planet has no moons.'
+        : `This planet's [[moon]]${(moons.length === 2) ? 's' : ''} ${plural(moons.length)} ${moons.join(' and ')}.`;
+    wikiCode(output, 'moonSentence');
+}
+function galleryExplanationExternal() {
+    return `There is a preferred order of pictures:
+	<div class='dialog-center'>
+		<ol class='dialog-list'>
+			<li>Landscape</li>
+			<li>Night View</li>
+			<li>Cave System</li>
+			<li>Coast Area</li>
+			<li>Underwater</li>
+			<li>Analysis Visor</li>
+			<li>Planet Exploration Guide</li>
+			<li>Planet Page</li>
+			<li>System Page</li>
+			<li>Galaxy Map</li>
+		</ol>
+	</div>`;
+}

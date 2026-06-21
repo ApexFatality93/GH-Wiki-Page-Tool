@@ -1,0 +1,37 @@
+:root {
+	--body-backgroundcolor: #05111c;
+	--body-background-image:
+		radial-gradient(circle at 18% 18%, rgba(73, 240, 210, 0.18), transparent 0 22rem),
+		radial-gradient(circle at 85% 14%, rgba(255, 180, 106, 0.14), transparent 0 18rem),
+		radial-gradient(circle at 76% 72%, rgba(132, 124, 255, 0.14), transparent 0 22rem),
+		linear-gradient(180deg, #071421 0%, #05111c 42%, #030c15 100%);
+	--footer-backgroundcolor: rgba(6, 22, 34, 0.64);
+	--tooltip-background: rgba(10, 30, 46, 0.95);
+	--input-background: rgba(8, 27, 41, 0.84);
+	--input-background-hover: rgba(12, 36, 54, 0.92);
+	--outline-color: #49f0d2;
+	--text-color: #eef8ff;
+	--heading-color: #f4fbff;
+	--code-color: #d7ecf7;
+	--placeholder-color: #8faabb;
+	--link-color: #dff9ff;
+	--link-hover-color: #49f0d2;
+	--border-color: rgba(126, 213, 255, 0.2);
+	--border-color-hover: rgba(126, 213, 255, 0.42);
+	--border-color-focus: #49f0d2;
+	--border-color-focus-hover: #7ff6df;
+	--table-border-color: rgba(126, 213, 255, 0.12);
+	--column-divider-color: rgba(126, 213, 255, 0.16);
+	--is-even-background-color: rgba(9, 28, 42, 0.56);
+	--is-odd-background-color: rgba(6, 21, 34, 0.46);
+	--panel-background: linear-gradient(180deg, rgba(13, 36, 54, 0.86), rgba(6, 22, 34, 0.78));
+	--panel-highlight: radial-gradient(circle at top right, rgba(73, 240, 210, 0.12), transparent 42%);
+	--panel-border: rgba(126, 213, 255, 0.18);
+	--panel-shadow: 0 30px 80px rgba(0, 0, 0, 0.34);
+	--accent-color: #49f0d2;
+	--accent-secondary: #ffb46a;
+	--accent-soft: rgba(73, 240, 210, 0.18);
+	--button-text-dark: #03121c;
+	--border-radius: 18px;
+	--invert: 92%;
+}

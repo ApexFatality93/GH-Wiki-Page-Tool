@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Hub Wiki Page Creator - Mineral</title>
+	<link rel="stylesheet" href="../src/css/common.css">
+	<script src="../static/modules/favicon.js" defer></script>
+	<script src="../static/common.js" defer></script>
+	<script src="../static/pages/mineral.js" defer></script>
+	<script src="../static/modules/footer.js" defer></script>
+	<script src="../static/modules/portalglyphs.js" defer></script>
+	<script src="../static/modules/gallery.js" defer></script>
+	<script src="../static/modules/actions.js" defer></script>
+	<script src="../static/datalists/mineralDatalists.js" defer></script>
+	<script src="../static/modules/commonModules.js" defer></script>
+	<script src="../static/misc_logic/locationLogic.js" defer></script>
+	<script>
+		window.onload = () => {
+			addStaticPageData('pageType', 'Mineral');
+			startUp();
+		}
+	</script>
+</head>
+<body>
+	<div class="container">
+		<nav><a href="../" title="Main page">&larr; Return to main page</a></nav>
+		<h1 class="title is-3">Hub Wiki Page Creator - Mineral</h1>
+		<dialog id="explanation" class="modal-content content"></dialog>
+		<main class="columns is-desktop">
+			<div id="input" class="column is-full-mobile">
+				<div class="table">
+					<div class="tableCell text">
+						<label>Current release:</label>
+					</div>
+					<div class="tableCell data">
+						<select id="versionInput" data-dest="release"></select>
+					</div>
+					<div class="tableCell text">
+						<label>Which civ does this mineral belong to?</label>
+					</div>
+					<div class="tableCell data">
+						<select id="civInput">
+							<option value="GHub">GHub</option>
+							<option value="CalHub">CalHub</option>
+							<option value="EisHub">EisHub</option>
+						</select>
+					</div>
+					<div class="tableCell text">
+						<label for="nameInput">Name of the mineral:</label>
+						<span class="tooltip">
+							<data>Enter exactly as seen in game.</data>
+							<data>Mineral Name</data>
+							<data>Enter exactly as seen in game.</data>
+							<data>../assets/bitmap/mineral/mineralName.jpg</data>
+						</span>
+					</div>
+					<div class="tableCell data">
+						<input type="text" data-dest="newName" id="nameInput">
+					</div>
+					<div class="tableCell text">
+						<label for="oldNameInput">Original name before uploading (if available):</label>
+					</div>
+					<div class="tableCell data">
+						<input type="text" data-dest="oldName" id="oldNameInput">
+					</div>
+					<div class="tableCell text">
+						<label for="fileInput">Main image name, including file extension:</label>
+						<span class="tooltip" onclick="uploadShown = true">
+							<data>Picture won't be uploaded to the wiki. This is only to autofill the image name.</data>
+							<data>File Upload</data>
+							<data>
+								Any pictures you upload here won't be uploaded to the wiki. This is only to autofill the
+								image name. Maximum filesize is 10MB.
+								You can upload your pictures to the wiki on <a
+									href='https://nmsgalactichub.miraheze.org/wiki/Special:Upload?multiple=true' target='_blank'
+									rel='noopener noreferrer'>Special:Upload</a>
+							</data>
+						</span>
+					</div>
+					<div class="tableCell data">
+						<input type="text" id="fileInput" data-dest="image" data-default="NmsMisc_NotAvailable.png">
+						<input type="file" id="fileUpload" accept="image/*" onchange="image(this)">
+					</div>
+					<div class="tableCell text">
+						<label for="systemInput">Name of the system:</label>
+					</div>
+					<div class="tableCell data">
+						<input type="text" data-dest="system" id="systemInput">
+					</div>
+					<div class="tableCell text">
+						<label for="planetInput">Name of the planet:</label>
+						<span class="tooltip">
+							<data>Planet Name OR the planet circled by the moon where the mineral can be found.</data>
+						</span>
+					</div>
+					<div class="tableCell data">
+						<input type="text" data-dest="planet" id="planetInput">
+					</div>
+					<div class="tableCell text">
+						<label for="moonInput">Name of the moon (if applicable):</label>
+						<span class="tooltip">
+							<data>If the mineral is located on a moon. Leave blank if the mineral is on a planet.</data>
+						</span>
+					</div>
+					<div class="tableCell data">
+						<input type="text" data-dest="moon" id="moonInput">
+					</div>
+					<div class="tableCell text">
+						<div class="label-combo">
+							<label for="portalglyphsInput">Portalglyphs:</label>
+							<button class="button is-small is-danger" type="button" onclick="deleteCharacter()">&larr; Delete</button>
+						</div>
+						<span class="tooltip">
+							<data>Found in Photo Mode. Glyphs are specific to each planet.</data>
+							<data>Portalglyphs</data>
+							<data>Found in Photo Mode. Glyphs are specific to each planet.</data>
+							<data>../assets/bitmap/shared/glyphs.jpg</data>
+						</span>
+					</div>
+					<div class="tableCell data">
+						<input type="text" id="portalglyphsInput" data-dest-noauto="portalglyphs" maxlength="12">
+					</div>
+					<div class="tableHeader data">
+						<div id="portalglyphButtons"></div>
+						<output name="portalglyphs" id="portalglyphsPreview" class="glyph"></output>
+					</div>
+					<div class="tableCell text">
+						<label for="descriptionInput">Short description:</label>
+						<span class="tooltip">
+							<data>Used in the Summary section. Example: crystalline rock formation.</data>
+						</span>
+					</div>
+					<div class="tableCell data">
+						<input type="text" data-dest="description" id="descriptionInput" placeholder="crystalline rock formation">
+					</div>
+					<div class="tableHeader text">
+						<p>The following information can be found in the mineral discovery menu.</p>
+					</div>
+					<div class="tableCell text">
+						<label for="contentInput">Metal Content:</label>
+						<span class="tooltip">
+							<data>Found in the mineral discovery menu.</data>
+							<data>Metal Content</data>
+							<data>Found in the mineral discovery menu.</data>
+							<data>../assets/bitmap/mineral/content.jpg</data>
+						</span>
+					</div>
+					<div class="tableCell data">
+						<input type="text" data-dest="content" id="contentInput">
+					</div>
+					<div class="tableCell text">
+						<label for="formationInput">Formation Process:</label>
+						<span class="tooltip">
+							<data>Found in the mineral discovery menu.</data>
+							<data>Formation Process</data>
+							<data>Found in the mineral discovery menu.</data>
+							<data>../assets/bitmap/mineral/formation.jpg</data>
+						</span>
+					</div>
+					<div class="tableCell data">
+						<input type="text" list="formationData" data-dest="formation" id="formationInput">
+					</div>
+					<div class="tableCell text">
+						<label for="notesInput">Notes:</label>
+						<span class="tooltip">
+							<data>Found in the mineral discovery menu or on the scan.</data>
+							<data>Notes</data>
+							<data>Found in the mineral discovery menu or on the scan.</data>
+							<data>../assets/bitmap/mineral/notes.jpg</data>
+						</span>
+					</div>
+					<div class="tableCell data">
+						<input type="text" list="mineralNotesData" data-dest="notes" id="notesInput">
+					</div>
+					<div class="tableCell text">
+						<label for="element_primary_input">Primary Element:</label>
+						<span class="tooltip">
+							<data>Primary element yielded when this mineral is mined.</data>
+							<data>Primary Element</data>
+							<data>Primary element yielded when this mineral is mined.</data>
+							<data>../assets/bitmap/mineral/primEl.jpg</data>
+						</span>
+					</div>
+					<div class="tableCell data">
+						<input type="text" list="mineralResources" data-dest="element_primary" id="element_primary_input">
+					</div>
+					<div class="tableCell text">
+						<label for="element_secondary_input">Secondary Element:</label>
+						<span class="tooltip">
+							<data>Secondary element yielded when this mineral is mined, if any.</data>
+							<data>Secondary Element</data>
+							<data>Secondary element yielded when this mineral is mined, if any.</data>
+							<data>../assets/bitmap/mineral/secEl.jpg</data>
+						</span>
+					</div>
+					<div class="tableCell data">
+						<input type="text" list="mineralResources" data-dest="element_secondary" id="element_secondary_input">
+					</div>
+					<div class="tableCell text">
+						<label for="polymorphicInput">Polymorphic:</label>
+						<span class="tooltip">
+							<data>Does this mineral exist in more than one form? If yes, indicate how many. If no or unsure, leave blank.</data>
+						</span>
+					</div>
+					<div class="tableCell data">
+						<input type="text" data-dest="polymorphic" id="polymorphicInput">
+					</div>
+					<div class="tableCell text">
+						<label for="discDateInput">When was this mineral discovered?</label>
+						<span class="tooltip">
+							<data>Found in the analysis visor.</data>
+							<data>Discovery Date</data>
+							<data>Found in the analysis visor. The exact discovery timestamp is displayed on the top left.</data>
+							<data>../assets/bitmap/mineral/discDate.jpg</data>
+						</span>
+					</div>
+					<div class="tableCell data">
+						<input type="date" id="discDateInput" data-dest="discDate">
+					</div>
+					<div class="tableHeader text">
+						<p>Information about the player.</p>
+					</div>
+					<div class="tableCell text">
+						<label for="discoveredlinkInput">Discoverer wiki account:</label>
+						<span class="tooltip">
+							<data>Enter the wiki username if the discoverer has one.</data>
+							<data>Discoverer</data>
+							<data>Use the discoverer's wiki account if available. Otherwise use the alias field below.</data>
+							<data>../assets/bitmap/mineral/discoverer.jpg</data>
+						</span>
+					</div>
+					<div class="tableCell data">
+						<input type="text" data-dest="discoveredlink" id="discoveredlinkInput">
+					</div>
+					<div class="tableCell text">
+						<label for="discoveredInput">Discoverer alias if no wiki:</label>
+					</div>
+					<div class="tableCell data">
+						<input type="text" data-dest="discovered" id="discoveredInput">
+					</div>
+					<div class="tableCell text">
+						<label for="docbyInput">Documenter if not discoverer:</label>
+						<span class="tooltip">
+							<data>Click the ? to see the different ways to link your wiki account</data>
+							<data>Documenter if not discoverer</data>
+							<data>Link your wiki account using:<br>{{profile|Username}}<br>
+								OR, link your wiki account with an alias using:<br>{{profile|Username|Alias}}<br>
+								OR, simply enter your wiki account name normally</data>
+						</span>
+					</div>
+					<div class="tableCell data">
+						<input type="text" data-dest-noauto="docby" id="docbyInput">
+					</div>
+					<div class="tableHeader data no-flex">
+						<label for="addInfoInput">Additional Information:</label>
+						<textarea id="addInfoInput" data-dest="addInfo"></textarea>
+					</div>
+					<div class="tableCell text">
+						<label for="galleryUpload">Gallery files</label>
+						<span class="tooltip" onclick="galleryUploadShown = true">
+							<data>There is a preferred order of pictures.</data>
+							<data>Gallery</data>
+							<data>The preferred order of pictures is as follows:
+								<div class='dialog-center'>
+									<ol class='dialog-list'>
+										<li>Scanner view</li>
+										<li>Other image</li>
+										<li>Discovery Menu</li>
+										<li>Planet Page</li>
+										<li>Moon Page</li>
+										<li>System Page</li>
+										<li>Galaxy Map</li>
+									</ol>
+								</div>
+							</data>
+						</span>
+					</div>
+					<div class="tableCell data">
+						<input type="file" multiple accept="image/*" id="galleryUpload" onchange="galleryUpload()">
+					</div>
+				</div>
+				<div id="galleryItems"></div>
+				<div id="actions" class="buttons"></div>
+			</div>
+			<div id="output" class="column is-full-mobile">
+				<div class="wikiText" id="fullArticle">
+					<div>{{Version|<output id="release" name="release"></output>}}</div>
+					<div>{{<output id="civStub"></output>}}</div>
+					<div>{{Mineral infobox</div>
+					<div>| name = <output id="name" name="name"></output></div>
+					<div>| image = <output id="image" name="image"></output></div>
+					<div>| galaxy = <output id="galaxy"></output></div>
+					<div>| region = <output id="region"></output></div>
+					<div>| system = <output id="system" name="system"></output></div>
+					<div>| planet = <output id="planet" name="planet"></output></div>
+					<div>| moon = <output id="moon"></output></div>
+					<div>| civilized = <output id="civilized"></output></div>
+					<div>| content = <output id="content"></output></div>
+					<div>| formation = <output id="formation"></output></div>
+					<div>| notes = <output id="notes"></output></div>
+					<div>| element_primary = <output id="element_primary"></output></div>
+					<div>| element_secondary = <output id="element_secondary"></output></div>
+					<div>| polymorphic = <output id="polymorphic"></output></div>
+					<div>| discovered = <output id="discovered"></output></div>
+					<div>| discoveredlink = <output id="discoveredlink"></output></div>
+					<div>| discovered_on = <output id="discDate"></output></div>
+					<div>| release = <output id="release1" name="release"></output></div>
+					<div>}}</div>
+					<div>'''<output id="name1" name="name"></output>''' is a variety of mineral.</div>
+					<br>
+
+					<div>==Summary==</div>
+					<div><output id="summaryText"></output></div>
+					<br>
+
+					<div>==Alias Names==</div>
+					<div>{{aliasc|text=Original|name=<output id="oldName"></output>}}</div>
+					<div>{{aliasc|text=Current|name=<output id="newName" name="newName"></output>}}</div>
+					<br>
+
+					<div>==Discovery Menu==</div>
+					<div>* Metal Content: <output id="content1" name="content"></output></div>
+					<div>* Formation Process: <output id="formation1" name="formation"></output></div>
+					<div>* Notes: <output id="notes1" name="notes"></output></div>
+					<br>
+
+					<div>==Location==</div>
+					<div>It can be found on the <output id="celestialBody"></output> in the [[<output id="locSystem" name="system"></output>]] [[star system]].</div>
+					<br>
+					<div>{{CoordGlyphConvert|<output id="portalglyphs1" name="portalglyphs"></output>}}</div>
+					<br>
+
+					<div>==Resources==</div>
+					<div><output id="usage"></output></div>
+					<br>
+
+					<div>==Additional Information==</div>
+					<div><span data-add-info="*"></span> <output id="addInfo"></output></div>
+					<div><span data-add-info="*"></span> <output id="docby"></output></div>
+					<br>
+
+					<div>==Gallery==</div>
+					<div>&lt;gallery&gt;</div>
+					<div><output id="galleryCode"></output></div>
+					<div>&lt;/gallery&gt;</div>
+				</div>
+			</div>
+		</main>
+	</div>
+	<footer id="footer" class="footer"></footer>
+</body>
+</html>

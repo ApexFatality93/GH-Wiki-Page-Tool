@@ -1,0 +1,88 @@
+footer.footer {
+	background-color: transparent;
+	margin-top: 2rem;
+	padding: 0;
+}
+
+footer.footer > * {
+	border: 1px solid var(--panel-border);
+	border-radius: 1.5rem;
+	background: var(--footer-backgroundcolor);
+	backdrop-filter: blur(12px);
+	box-shadow: var(--panel-shadow);
+	padding: 1.35rem 1.5rem;
+}
+
+.site-footer-shell {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1.5rem 2rem;
+	flex-wrap: wrap;
+}
+
+.site-footer-copy {
+	max-width: 42rem;
+}
+
+.site-footer-eyebrow {
+	margin: 0 0 0.35rem;
+	font-family: "NMS Futura", Nunito, sans-serif;
+	font-size: 0.78rem;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: var(--accent-color);
+}
+
+.site-footer-text {
+	margin: 0;
+	line-height: 1.55;
+	color: var(--text-color);
+}
+
+.site-footer-nav {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	gap: 0.75rem;
+}
+
+.site-footer-nav a {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 2.55rem;
+	padding: 0.7rem 1rem;
+	border: 1px solid color-mix(in srgb, var(--accent-color) 28%, var(--panel-border));
+	border-radius: 999px;
+	background: color-mix(in srgb, var(--footer-backgroundcolor) 78%, transparent);
+	font-family: "NMS Futura", Nunito, sans-serif;
+	font-size: 0.82rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	text-decoration: none;
+	transition: transform 120ms ease, border-color 120ms ease, background-color 120ms ease, color 120ms ease;
+}
+
+.site-footer-nav a:hover {
+	transform: translateY(-1px);
+	background: color-mix(in srgb, var(--accent-color) 10%, var(--footer-backgroundcolor));
+}
+
+.site-footer-nav a[aria-current="page"] {
+	border-color: color-mix(in srgb, var(--accent-color) 58%, var(--panel-border));
+	background: color-mix(in srgb, var(--accent-color) 16%, var(--footer-backgroundcolor));
+	color: var(--heading-color);
+	pointer-events: none;
+}
+
+@media (max-width: 720px) {
+	.site-footer-shell {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.site-footer-nav {
+		justify-content: flex-start;
+	}
+}

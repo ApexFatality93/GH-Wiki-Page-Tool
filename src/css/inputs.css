@@ -1,0 +1,192 @@
+.button.is-link.is-outlined {
+	color: var(--accent-color);
+	border-color: color-mix(in srgb, var(--accent-color) 70%, transparent);
+	background: linear-gradient(180deg, rgba(73, 240, 210, 0.08), rgba(73, 240, 210, 0.02));
+}
+
+.button.is-link.is-outlined:not([disabled]):hover {
+	color: var(--button-text-dark);
+	background: var(--accent-color);
+	border-color: var(--accent-color);
+}
+
+.button {
+	background-color: transparent;
+	color: var(--text-color);
+	border-color: var(--border-color);
+	white-space: normal;
+	border-radius: calc(var(--border-radius) - 6px);
+	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+.button:not(#portalglyphButtons .button) {
+	height: auto;
+}
+
+.button:hover {
+	color: var(--border-color-focus);
+	border-color: var(--border-color-hover);
+	background-color: rgba(255, 255, 255, 0.04);
+}
+
+.button:focus {
+	color: unset;
+}
+
+.button:active {
+	color: var(--border-color-focus);
+	border-color: var(--border-color-focus);
+}
+
+.button:not([class*="is-"]):focus,
+.button:not([class*="is-"]):focus-visible,
+textarea:focus,
+textarea:focus-visible,
+input:not([type="file"], [type="checkbox"], [type="radio"]):focus,
+input:not([type="file"], [type="checkbox"], [type="radio"]):focus-visible {
+	outline: 2px solid var(--outline-color);
+}
+
+.button.is-primary:not(.is-outlined),
+.button.is-primary.is-outlined:hover {
+	color: var(--button-text-dark);
+	background: var(--accent-color);
+	border-color: var(--accent-color);
+}
+
+.button.is-warning {
+	color: var(--button-text-dark);
+	background: color-mix(in srgb, var(--accent-secondary) 88%, black 12%);
+	border-color: color-mix(in srgb, var(--accent-secondary) 72%, transparent);
+}
+
+.button.is-warning:hover,
+.button.is-warning:focus,
+.button.is-warning:active {
+	color: var(--button-text-dark);
+	background: var(--accent-secondary);
+	border-color: var(--accent-secondary);
+}
+
+.button.is-danger,
+.button.is-danger:hover {
+	color: #ffe3e0;
+	border-color: rgba(255, 122, 122, 0.5);
+}
+
+textarea,
+input {
+	background-color: var(--input-background);
+	color: var(--text-color);
+	border-color: var(--border-color);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+textarea:hover,
+input:hover {
+	border-color: var(--border-color-hover);
+}
+
+textarea:focus,
+input:focus {
+	border-color: var(--border-color-focus);
+}
+
+textarea:focus:hover,
+input:focus:hover {
+	border-color: var(--border-color-focus-hover);
+}
+
+textarea::placeholder,
+input::placeholder {
+	color: var(--placeholder-color);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+	filter: invert(var(--invert));
+}
+
+select,
+input[type="file"]::file-selector-button {
+	background-color: var(--input-background);
+	color: var(--text-color);
+	border: 1px solid;
+	border-color: var(--border-color);
+	border-radius: var(--border-radius);
+	padding-left: 10px;
+}
+
+select:hover,
+input[type="file"]::file-selector-button:hover {
+	background-color: var(--input-background-hover);
+	border-color: var(--border-color-hover);
+}
+
+select:focus,
+input[type="file"]::file-selector-button:focus {
+	border-color: var(--border-color-focus);
+}
+
+select:has(optgroup:hover) {
+	background-color: var(--input-background-hover);
+}
+
+select option {
+	background-color: var(--input-background);
+}
+
+select optgroup {
+	background-color: var(--input-background-hover);
+}
+
+input[type="file"]::file-selector-button {
+	padding: 7px 10px;
+}
+
+.checkbox:hover {
+	color: var(--text-color);
+}
+
+input[type="file"] {
+	width: 100%;
+	background-color: transparent;
+}
+
+*~input[type="file"] {
+	margin-top: 5px;
+}
+
+select,
+input[type="text"],
+input[type="number"],
+input[type="date"] {
+	min-width: 100px;
+	width: 100%;
+	min-height: 25px;
+}
+
+textarea {
+	display: block;
+	width: 100%;
+	min-height: 75px;
+	resize: vertical;
+	margin-top: 3px;
+}
+
+textarea,
+input[type="text"],
+input[type="number"],
+input[type="date"] {
+	border-radius: var(--border-radius);
+	border: 1px solid;
+	border-color: var(--border-color);
+	padding: 0 10px;
+}
+
+textarea:hover,
+input[type="text"]:hover,
+input[type="number"]:hover,
+input[type="date"]:hover {
+	border: 1px solid;
+	border-color: var(--border-color-hover);
+}

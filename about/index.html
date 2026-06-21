@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Hub Wiki Page Creator - About</title>
+	<link rel="stylesheet" href="../src/css/common.css">
+	<script src="../static/modules/favicon.js" defer></script>
+	<script src="../static/modules/footer.js" defer></script>
+	<script>
+		// making all external links open in a new tab
+		const isExternalURL = (url) => new URL(url).origin !== location.origin;
+		window.onload = () => {
+			const a = document.getElementsByTagName("a");
+			for (const link of a) {
+				if (!isExternalURL(link.href)) continue;
+				link.target = "_blank";
+				link.rel = "noopener noreferrer";
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<div class="container">
+		<nav><a href="../" title="Main page">&larr; Return to main page</a></nav>
+		<h1 class="title is-3">About this Web App</h1>
+		<main class="content">
+			<div class="article-grid">
+				<article class="section">
+					<h2 class="title is-5">Who made this?</h2>
+					<p>
+						This page creator was originally developed by <a href="https://github.com/Lenni009">Lenni</a>, 
+						an admin for the <a href="https://nomanssky.fandom.com/wiki/No_Man%27s_Sky_Wiki">No Mans Sky Fandom Wiki</a>. 
+					</p>
+					<p>You can contact Lenni either on Discord or on Reddit:</p>
+					<ul>
+						<li>Discord: lenni009</li>
+						<li>Reddit: <a href="https://www.reddit.com/user/Lenni009">u/Lenni009</a></li>
+					</ul>
+				</article>
+				<article class="section">
+					<h2 class="title is-5">Who maintains this?</h2>
+					<p>
+						This page creator is now maintained by <a href="https://github.com/ApexFatality93">ApexFatality</a>, 
+					 	the director of the <a href="https://nmsgalactichub.miraheze.org/wiki/Galactic_Hub_Calypso">Galactic Hub Calypso</a>.
+					</p>
+					<p>You can contact ApexFatality either on Discord or on Reddit:</p>
+					<ul>
+						<li>Discord: apexfatality</li>
+						<li>Reddit: <a href="https://www.reddit.com/user/ApexFatality">u/ApexFatality</a></li>
+					</ul>
+				</article>
+				<article class="section">
+					<h2 class="title is-5">How can I contribute?</h2>
+					<p>
+						To contribute to this branch, you can <a href="https://github.com/ApexFatality93/apexfatality93.github.io/forks">fork
+						the repo</a>, edit the code, and then open a pull request back to this repository when you're done.
+					</p>
+					<p>
+						If you come across a bug and want to report it, use either the <a href='https://forms.gle/uDABQyPh1AvPAczs9'>feedback
+						form</a>, message me on Reddit or Discord, or submit a <a
+						href="https://github.com/ApexFatality93/apexfatality93.github.io/issues/new">GitHub issue</a>.
+					</p>
+				</article>
+				<article class="section">
+					<h2 class="title is-5">Can I make my own version?</h2>
+					<p>Yes, absolutely!</p>
+					<p>
+						The app is licensed under the GPLv3 license, meaning you can make your own version, as long as
+						it stays open source and also has the GPLv3 license.
+					</p>
+				</article>
+				<article class="section">
+					<h2 class="title is-5">Do you collect data?</h2>
+					<p>
+						No, the app collects no data. Everything you do here stays on your local computer.
+					</p>
+				</article>
+			</div>
+		</main>
+	</div>
+	<footer id="footer" class="footer"></footer>
+</body>
+
+</html>

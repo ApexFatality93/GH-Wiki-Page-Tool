@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>GHub Wiki Page Creator</title>
+	<link rel="stylesheet" href="./src/css/common.css">
+	<script src="./static/modules/favicon.js" defer></script>
+	<script src="./static/modules/footer.js" defer></script>
+	<style>
+		nav {
+			text-align: center;
+			margin-right: 25%;
+		}
+
+		img {
+			vertical-align: middle;
+		}
+	</style>
+	<script>
+		// making all external links open in a new tab
+		const isExternalURL = (url) => new URL(url).origin !== location.origin;
+		window.onload = () => {
+			const a = document.getElementsByTagName("a");
+			for (const link of a) {
+				if (!isExternalURL(link.href)) continue;
+				link.target = "_blank";
+				link.rel = "noopener noreferrer";
+			}
+
+			const GHubHosts = ['wiki.nmsgalactichub.com', 'nmswikipagecreator.nmsgalactichub.com', 'hubwikipagecreator.nmsgalactichub.com'];
+			if (GHubHosts.includes(window.location.host)) document.querySelector('a[href=".."]').href = 'https://nmsgalactichub.com';
+		}
+	</script>
+</head>
+
+<body>
+	<div class="container">
+		<main class="home">
+			<h1 class="title is-spaced">Galactic Hub Wiki Page Creator</h1>
+			<div class="subtitle is-4">Choose what page you want to create:</div>
+			<nav class="page-options">
+				<a href="./base/" title="Base" class="button is-link is-outlined">Base</a>
+				<a href="./fauna/" title="Fauna" class="button is-link is-outlined">Fauna</a>
+				<a href="./sandworm/" title="Sandworm" class="button is-link is-outlined">Sandworm</a>
+				<a href="./flora/" title="Flora" class="button is-link is-outlined">Flora</a>
+				<a href="./mineral/" title="Mineral" class="button is-link is-outlined">Mineral</a>
+				<a href="./planet/" title="Planet" class="button is-link is-outlined">Planet</a>
+				<a href="./multitool/" title="Multi-Tool" class="button is-link is-outlined">Multi-Tool</a>
+				<a href="./moon/" title="Moon" class="button is-link is-outlined">Moon</a>
+				<a href="./starship/" title="Starship" class="button is-link is-outlined">Starship</a>
+				<a href="./system/" title="System" class="button is-link is-outlined">System</a>
+				<a href="./business/" title="Business" class="button is-link is-outlined">Business</a>
+			</nav>
+			<div class="hub-images">
+				<a href="https://nmsgalactichub.miraheze.org/wiki/Galactic_Hub_Project">
+					<img src="https://static.wikia.nocookie.net/nomanssky_gamepedia/images/7/75/Galactic_Hub_Emblem.png"
+						alt="Galactic Hub logo">
+				</a>
+				<a href="https://nmsgalactichub.miraheze.org/wiki/Galactic_Hub_Calypso">
+					<img src="https://static.wikia.nocookie.net/nomanssky_gamepedia/images/c/cb/Galactic_Hub_Calypso.png"
+						alt="Galactic Hub Calypso logo">
+				</a>
+				<a href="https://nmsgalactichub.miraheze.org/wiki/Galactic_Hub_Eissentam">
+					<img src="https://static.wikitide.net/nmsgalactichubwiki/6/65/EisHub_Logo.png"
+						alt="Galactic Hub Eissentam logo">
+				</a>
+			</div>
+		</main>
+	</div>
+	<footer id="footer" class="footer"></footer>
+</body>
+
+</html>

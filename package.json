@@ -1,0 +1,24 @@
+{
+  "name": "gh-wiki-page-tool",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Galactic Hub Wiki Page Creator",
+  "engines": {
+    "node": ">=25.8.0",
+    "npm": ">=11.11.0"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsc",
+    "watch": "tsc --watch --preserveWatchOutput",
+    "serve": "node scripts/static-server.mjs",
+    "dev": "node scripts/dev.mjs",
+    "clean:static": "find static -type f -name '*.js' -delete",
+    "rebuild": "npm run clean:static && npm run build",
+    "check:html": "node scripts/check-html-script-paths.mjs",
+    "verify": "npm run typecheck && npm run rebuild && npm run check:html"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.3"
+  }
+}
