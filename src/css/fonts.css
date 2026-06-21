@@ -3,13 +3,13 @@
 @font-face {
 	font-family: 'Nunito';
 	font-weight: 400 700;
-	src: local('Nunito'), url('/assets/fonts/Nunito.woff2') format('woff2');
+	src: local('Nunito'), url('../../assets/fonts/Nunito.woff2') format('woff2');
 }
 
 @font-face {
 	font-family: 'NMS Futura';
 	font-weight: 400;
-	src: local('NMS Futura'), url('/assets/fonts/NMSFuturaProBook_Kerned.ttf') format('truetype');
+	src: local('NMS Futura'), url('../../assets/fonts/NMSFuturaProBook_Kerned.ttf') format('truetype');
 	font-display: swap;
 }
 
@@ -18,11 +18,11 @@
 @font-face {
 	font-family: 'Roboto';
 	font-weight: 400;
-	src: local('Roboto'), url('/assets/fonts/Roboto.woff2') format('woff2');
+	src: local('Roboto'), url('../../assets/fonts/Roboto.woff2') format('woff2');
 }
 
 /* glyph font */
 @font-face {
 	font-family: 'NMS-Glyphs-Mono';
-	src: local('NMS-Glyphs-Mono'), url('/assets/fonts/NMS-Glyphs-Mono.ttf') format('truetype');
+	src: local('NMS-Glyphs-Mono'), url('../../assets/fonts/NMS-Glyphs-Mono.ttf') format('truetype');
 }
