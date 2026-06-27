@@ -217,6 +217,7 @@
 							<option value="Red">Red</option>
 							<option value="Green">Green</option>
 							<option value="Yellow">Yellow</option>
+							<option value="Pink">Pink</option>
 							<option value="Purple">Purple</option>
 							<option value="Orange">Orange</option>
 						</select>
@@ -242,7 +243,7 @@
 						</select>
 					</div>
 					<div class="tableCell text">
-						<label for="terrainInput">Terrain of the planet:</label>
+						<label for="terrainInput">Geology of the planet:</label>
 						<span class="tooltip">
 							<data>Can be found in the exploration guide.</data>
 							<data>Planet Terrain</data>
@@ -372,28 +373,6 @@
 						<input type="date" id="docDateInput" data-dest-noauto="docDate">
 					</div>
 					<div class="tableCell text">
-						<label>Gamemode:</label>
-						<span class="tooltip">
-							<data>Gamemode of the save on which this planet was documented.</data>
-							<data>Gamemode</data>
-							<data>
-								Gamemode of the save on which this planet was documented.<br>Found in the main
-								menu:
-							</data>
-							<data>../assets/bitmap/shared/gamemode.jpg</data>
-						</span>
-					</div>
-					<div class="tableCell data">
-						<select data-dest="mode" id="modeInput">
-							<option value="Normal">Normal</option>
-							<option value="Relaxed">Relaxed</option>
-							<option value="Survival">Survival</option>
-							<option value="Permadeath">Permadeath</option>
-							<option value="Creative">Creative</option>
-							<option value="Custom">Custom</option>
-						</select>
-					</div>
-					<div class="tableCell text">
 						<label>Discoverer platform:</label>
 					</div>
 					<div class="tableCell data">
@@ -417,16 +396,16 @@
 						<input type="text" data-dest="discovered" id="discoveredInput">
 					</div>
 					<div class="tableCell text">
-						<label for="docbyInput">Documenter wiki account:</label>
+						<label for="documentedlinkInput">Documenter wiki account:</label>
 					</div>
 					<div class="tableCell data">
-						<input type="text" data-dest-noauto="docby" data-dest="documentedlink" id="docbyInput">
+						<input type="text" data-dest="documentedlink" id="documentedlinkInput">
 					</div>
 					<div class="tableCell text">
-						<label for="docbyInput">Documenter alias if no wiki:</label>
+						<label for="documentedInput">Documenter alias if no wiki:</label>
 					</div>
 					<div class="tableCell data">
-						<input type="text" data-dest-noauto="docby" data-dest="documented" id="docbyInput">
+						<input type="text" data-dest="documented" id="documentedInput">
 					</div>
 					<div class="tableHeader data no-flex">
 						<label for="addInfoInput">Additional Information:</label>
@@ -488,7 +467,6 @@
 					<div>| flora = <output id="flora"></output></div>
 					<div>| fauna = <output id="fauna"></output> (<output id="faunaNumber" name="faunaNumber"></output>)
 					</div>
-					<div>| mode = <output id='mode'></output></div>
 					<div>| civilized = <output id='civilized'></output></div>
 					<div>| discoveredlink = <output id='discoveredlink'></output></div>
 					<div>| discovered = <output id='discovered' name="discovered"></output></div>
@@ -544,47 +522,21 @@
 					<div>===Fauna===</div>
 					<div>* There <output id="faunaSentencePlural"></output> <output id="faunaNumberSentence"
 							name="faunaNumber"></output> fauna on this planet</div>
-					<div>{| class="article-table" style="text-align:center; width:100%; max-width: 1250px"</div>
-					<div>|-</div>
-					<div>!style="background-color:#2f4f4f; width:150px"|Image</div>
-					<div>!style="background-color:#2f4f4f"|Name</div>
-					<div>!style="background-color:#2f4f4f"|Ecosystem</div>
-					<div>!style="background-color:#2f4f4f"|Genus</div>
-					<div>!style="background-color:#2f4f4f"|Height</div>
-					<div>!style="background-color:#2f4f4f"|Weight</div>
-					<div>!style="background-color:#2f4f4f"|Discovered by</div>
+					<div>&lt;div class="fauna-grid"&gt;</div>
 					<div id="creatures"></div>
-					<div>|}</div>
+					<div>&lt;/div&gt;</div>
 					<br>
 
 					<div>===Flora===</div>
-					<div>{| class="article-table" style="text-align:center; width:100%; max-width: 1250px"</div>
-					<div>|-</div>
-					<div>!style="background-color:#2f4f4f; width:150px"|Image</div>
-					<div>!style="background-color:#2f4f4f"|Name</div>
-					<div>!style="background-color:#2f4f4f"|Age</div>
-					<div>!style="background-color:#2f4f4f"|Root Structure</div>
-					<div>!style="background-color:#2f4f4f"|Nutrient Source</div>
-					<div>!style="background-color:#2f4f4f"|Notes</div>
-					<div>!style="background-color:#2f4f4f"|Elements</div>
-					<div>!style="background-color:#2f4f4f"|Discovered by</div>
+					<div>&lt;div class="flora-grid"&gt;</div>
 					<div id="plants"></div>
-					<div>|}</div>
-					<div></div>
+					<div>&lt;/div&gt;</div>
 					<br>
 
 					<div>==Minerals==</div>
-					<div>{| class="article-table" style="text-align:center; width:100%; max-width: 1250px"</div>
-					<div>|-</div>
-					<div>!style="background-color:#2f4f4f; width:150px"|Image</div>
-					<div>!style="background-color:#2f4f4f"|Name</div>
-					<div>!style="background-color:#2f4f4f"|Metal Content</div>
-					<div>!style="background-color:#2f4f4f"|Formation Process</div>
-					<div>!style="background-color:#2f4f4f"|Notes</div>
-					<div>!style="background-color:#2f4f4f"|Elements</div>
-					<div>!style="background-color:#2f4f4f"|Discovered by</div>
+					<div>&lt;div class="mineral-grid"&gt;</div>
 					<div id="minerals"></div>
-					<div>|}</div>
+					<div>&lt;/div&gt;</div>
 					<br>
 
 					<div>==Sentinels==</div>

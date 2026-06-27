@@ -23,6 +23,8 @@ interface SharedPageData {
 	civilized: string;
 	discovered: string;
 	discoveredlink: string;
+	documented: string;
+	documentedlink: string;
 	builder: string;
 	builderlink: string;
 	docby: string;
@@ -61,6 +63,8 @@ interface SharedGlobalInputs {
 	galleryUpload: HTMLInputElement;
 	discoveredInput: HTMLInputElement;
 	discoveredlinkInput: HTMLInputElement;
+	documentedInput: HTMLInputElement;
+	documentedlinkInput: HTMLInputElement;
 	docbyInput: HTMLInputElement;
 	axesInput: HTMLInputElement;
 	nameInput: HTMLInputElement;

@@ -10,6 +10,8 @@ const celestialObjectElementFunctions = {
     docDateInput: ['docByExternal()'],
     discDateInput: ['docByExternal()'],
     platformInput: ['docByExternal()'],
+    documentedInput: ['hideDiscoverer("documentedInput", "documentedlinkInput"); docByExternal()'],
+    documentedlinkInput: ['hideDiscoverer("documentedlinkInput", "documentedInput"); docByExternal()'],
     oldNameInput: ['hideOrgName()'],
     civ: ['locationSentence()', null, true],
     portalglyphsInput: ['locationSentence()', null, true],
@@ -18,7 +20,9 @@ assignElementFunctions(celestialObjectElementFunctions);
 function docByExternal() {
     const discovered = celestialPageData.discovered;
     const discoveredlink = celestialPageData.discoveredlink;
-    const documenter = celestialPageData.docby;
+    const documented = celestialPageData.documented;
+    const documentedlink = celestialPageData.documentedlink;
+    const documenter = documentedlink || documented || celestialPageData.docby;
     const platform = celestialPageData.platform === 'NS' ? 'Switch' : celestialPageData.platform;
     function formatDate(date) {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -28,13 +32,17 @@ function docByExternal() {
     }
     const discDate = formatDate(celestialPageData.discDate);
     const docDate = formatDate(celestialPageData.docDate);
-    const documented = formatName(documenter);
     const research = `${platform} explorer`;
     const discoverer = !discoveredlink ? formatName(discovered) : `{{profile|${discoveredlink}}}`;
-    const explorer = (!documenter || documenter === discovered || documenter === discoveredlink)
+    const documenterName = documentedlink ? `{{profile|${documentedlink}}}` : formatName(documenter);
+    const sameDocumenter = Boolean(documenter) && (documenter === discovered ||
+        documenter === discoveredlink ||
+        documentedlink === discoveredlink ||
+        documentedlink === discovered);
+    const explorer = (!documenter || sameDocumenter)
         ? `Discovered and uploaded by ${research} ${discoverer} on ${discDate}`
         : `* Discovered and uploaded by ${platform} explorer ${discoverer} on ${discDate}
-			* Explored and documented by ${research} ${documented} on ${docDate}`;
+			* Explored and documented by ${research} ${documenterName} on ${docDate}`;
     celestialOutputs.docby.innerText = explorer;
 }
 function wikiCodePercentage(element = null) {

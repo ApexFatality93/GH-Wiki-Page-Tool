@@ -233,45 +233,8 @@
 						<div class="tableCell data">
 							<input type="text" data-dest="polymorphic" name="Polymorphic" id="polymorphic_input">
 						</div>
-					<div class="tableCell text ">
-						<label for="discDateInput">When was this flora discovered?</label>
-						<span class="tooltip">
-							<data>Found in the analysis visor.</data>
-							<data>Discovery Date</data>
-							<data>
-								Found in the analysis visor.<br>
-								The exact discovery timestamp is displayed on the top left.
-							</data>
-							<!-- <data>../assets/bitmap/planet/discDate.jpg</data> -->
-						</span>
-					</div>
-					<div class="tableCell data">
-						<input type="date" id="discDateInput" data-dest="discDate">
-					</div>
 					<div class="tableHeader text">
 						<p>Information about the player.</p>
-					</div>
-					<div class="tableCell text">
-						<label>Gamemode:</label>
-						<span class="tooltip">
-							<data>Gamemode of the save on which this flora was discovered.</data>
-							<data>Gamemode</data>
-							<data>
-								Gamemode of the save on which this flora was discovered.<br>
-								Found in the main menu:
-							</data>
-							<data>../assets/bitmap/shared/gamemode.jpg</data>
-						</span>
-					</div>
-					<div class="tableCell data">
-						<select data-dest="mode" id="modeInput">
-							<option value="Normal">Normal</option>
-							<option value="Relaxed">Relaxed</option>
-							<option value="Survival">Survival</option>
-							<option value="Permadeath">Permadeath</option>
-							<option value="Creative">Creative</option>
-							<option value="Custom">Custom</option>
-						</select>
 					</div>
 					<div class="tableCell text">
 						<label for="discoveredlinkInput">Discoverer wiki account:</label>
@@ -307,7 +270,7 @@
 								<div class='dialog-center'>
 									<ol class='dialog-list'>
 										<li>Other image</li>
-										<li>Analysis Visor scan</li>
+										<li>Scanner view</li>
 										<li>Discovery Menu</li>
 										<li>Moon Page</li>
 										<li>Planet Page</li>
@@ -316,6 +279,7 @@
 									</ol>
 								</div>
 							</data>
+							<data></data>
 						</span>
 					</div>
 					<div class="tableCell data">
@@ -352,8 +316,6 @@
 						<div>| civilized = <output id='civilized'></output></div>
 						<div>| discoveredlink = <output id='discoveredlink'></output></div>
 						<div>| discovered = <output id='discovered'></output></div>
-						<div>| discovered_on = <output id='discDate'></output></div>
-						<div>| mode = <output id='mode'></output></div>
 						<div>| release = <output id='release1' name="release"></output></div>
 						<div>}}</div>
 						<div>'''<output id='name1' name="name"></output>''' is a species of flora.</div>

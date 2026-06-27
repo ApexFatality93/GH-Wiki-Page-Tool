@@ -76,8 +76,16 @@ function moonSentence() {
 	const moons = planetPageData.moons;
 	const output = (!moons || moons.length === 0)
 		? 'This planet has no moons.'
-		: `This planet's [[moon]]${(moons.length === 2) ? 's' : ''} ${plural(moons.length)} ${moons.join(' and ')}.`;
+		: moons.length === 1
+			? `This planet's [[moon]] is ${moons[0]}.`
+			: `This planet's [[moon]]s are ${formatMoonList(moons)}.`;
 	wikiCode(output, 'moonSentence');
+}
+
+function formatMoonList(moons: string[]) {
+	if (moons.length <= 1) return moons[0] ?? '';
+	if (moons.length === 2) return `${moons[0]} and ${moons[1]}`;
+	return `${moons.slice(0, -1).join(', ')}, and ${moons[moons.length - 1]}`;
 }
 
 function galleryExplanationExternal() {

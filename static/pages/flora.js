@@ -1,6 +1,7 @@
 "use strict";
 const floraPageData = pageData;
 const floraOutputs = globalElements.output;
+const floraWindow = window;
 const floraResourceHarvest = () => {
     const primaryElement = floraPageData.element_primary;
     const secondaryElement = floraPageData.element_secondary;
@@ -13,16 +14,46 @@ window.resourceHarvest = floraResourceHarvest;
 const floraStartupFunctions = () => {
     floraResourceHarvest();
     hideOrgName();
-    pageName();
-    bundlePropFunctions();
     planetMoonSentence();
-    noLineBreak();
 };
-window.startupFunctions = floraStartupFunctions;
+floraWindow.startupFunctions = floraStartupFunctions;
 const floraElementFunctions = {
-    planetInput: ['planetMoonSentence()'],
-    moonInput: ['planetMoonSentence()'],
+    planetInput: ['planetMoonSentence(); generateGalleryArray()'],
+    moonInput: ['planetMoonSentence(); generateGalleryArray()'],
     element_primary_input: ['resourceHarvest()'],
     element_secondary_input: ['resourceHarvest()'],
 };
 assignElementFunctions(floraElementFunctions);
+const floraGenerateGalleryArray = () => {
+    const array = [
+        '',
+        'Other image',
+        'Scanner view',
+        'Discovery Menu',
+        'Moon Page',
+        'Planet Page',
+        'System Page',
+        'Galaxy Map',
+    ];
+    if (!floraPageData.moon) {
+        const index = array.findIndex(item => item.toLowerCase().includes('moon'));
+        array.splice(index, 1);
+    }
+    floraPageData.galleryArray = array;
+};
+floraWindow.generateGalleryArray = floraGenerateGalleryArray;
+const floraGalleryExplanationExternal = () => {
+    return `The preferred order of pictures is as follows:
+		<div class='dialog-center'>
+			<ol class='dialog-list'>
+				<li>Other image</li>
+				<li>Scanner view</li>
+				<li>Discovery Menu</li>
+				<li>Moon Page</li>
+				<li>Planet Page</li>
+				<li>System Page</li>
+				<li>Galaxy Map</li>
+			</ol>
+		</div>`;
+};
+floraWindow.galleryExplanationExternal = floraGalleryExplanationExternal;
