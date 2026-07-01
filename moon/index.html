@@ -18,20 +18,23 @@
 	<script src="../static/datalists/planetDatalists.js" defer></script>
 	<script src="../static/datalists/floraDatalists.js" defer></script>
 	<script src="../static/datalists/mineralDatalists.js" defer></script>
-	<script src="../static/pages/moon.js"></script>
+	<script src="../static/pages/moon.js" defer></script>
 	<script src="../static/misc_logic/locationLogic.js" defer></script>
 	<script src="../static/misc_logic/creatureData.js" defer></script>
-	<script src="../static/misc_logic/dateLogic.js"></script>
-	<script>
+	<script src="../static/misc_logic/dateLogic.js" defer></script>
+		<script>
 		window.onload = () => {
 			addStaticPageData('galleryArray', [
 				'',
 				'Space View',
 				'Night View',
 				'Cave System',
+				'Coast Area',
+				'Underwater',
 				'Analysis Visor',
 				'Moon Exploration Guide',
 				'Moon Page',
+				'Planet',
 				'Planet Page',
 				'System Page',
 				'Galaxy Map'
@@ -48,7 +51,7 @@
 			<div><a href="../" title="Main page">&larr; Return to main page</a></div>
 			<div><a href="../planet/" title="Planet">&#8624; Planet</a></div>
 		</nav>
-		<h1 class="title is-3">Hub Wiki Page Creator - Planet</h1>
+		<h1 class="title is-3">Hub Wiki Page Creator - Moon</h1>
 		<dialog id="explanation" class="modal-content content"></dialog>
 
 		<main class="columns is-desktop">
@@ -74,7 +77,7 @@
 						<label for="nameInput">Name of the moon:</label>
 						<span class="tooltip">
 							<data>Enter exactly as seen in game. Watch out for 0 (zero) and O (o).</data>
-							<data>moon Name</data>
+							<data>Moon Name</data>
 							<data>Enter exactly as seen in game. Watch out for 0 (zero) and O (o).</data>
 							<data>../assets/bitmap/planet/planetName.jpg</data>
 						</span>
@@ -204,6 +207,44 @@
 					</div>
 					<div class="tableCell data">
 						<input type="text" data-dest="atmosphere" id="atmosphereInput">
+					</div>
+					<div class="tableCell text">
+						<label for="skyInput">Sky color of the moon:</label>
+						<span class="tooltip">
+							<data>The color of the sky.</data>
+						</span>
+					</div>
+					<div class="tableCell data">
+						<select id="skyInput" data-dest="sky">
+							<option value=""></option>
+							<option value="Blue">Blue</option>
+							<option value="Red">Red</option>
+							<option value="Green">Green</option>
+							<option value="Yellow">Yellow</option>
+							<option value="Pink">Pink</option>
+							<option value="Purple">Purple</option>
+							<option value="Orange">Orange</option>
+						</select>
+					</div>
+					<div class="tableCell text">
+						<label for="grassInput">Grass color of the moon:</label>
+						<span class="tooltip">
+							<data>The color of the grass.</data>
+						</span>
+					</div>
+					<div class="tableCell data">
+						<select id="grassInput" data-dest="grass">
+							<option value=""></option>
+							<option value="Blue">Blue</option>
+							<option value="Red">Red</option>
+							<option value="Green">Green</option>
+							<option value="Yellow">Yellow</option>
+							<option value="Purple">Purple</option>
+							<option value="White">White</option>
+							<option value="Orange">Orange</option>
+							<option value="Brown">Brown</option>
+							<option value="Color Shift">Color Shift</option>
+						</select>
 					</div>
 					<div class="tableCell text">
 						<label for="terrainInput">Terrain of the moon:</label>
@@ -382,10 +423,16 @@
 						<input type="text" data-dest="discovered" id="discoveredInput">
 					</div>
 					<div class="tableCell text">
-						<label for="docbyInput">Documenter alias if not discoverer:</label>
+						<label for="documentedlinkInput">Documenter wiki account:</label>
 					</div>
 					<div class="tableCell data">
-						<input type="text" data-dest-noauto="docby" id="docbyInput">
+						<input type="text" data-dest="documentedlink" id="documentedlinkInput">
+					</div>
+					<div class="tableCell text">
+						<label for="documentedInput">Documenter alias if no wiki:</label>
+					</div>
+					<div class="tableCell data">
+						<input type="text" data-dest="documented" id="documentedInput">
 					</div>
 					<div class="tableHeader data no-flex">
 						<label for="addInfoInput">Additional Information:</label>
@@ -402,9 +449,12 @@
 										<li>Space View</li>
 										<li>Night View</li>
 										<li>Cave System</li>
+										<li>Coast Area</li>
+										<li>Underwater</li>
 										<li>Analysis Visor</li>
 										<li>Moon Exploration Guide</li>
 										<li>Moon Page</li>
+										<li>Planet</li>
 										<li>Planet Page</li>
 										<li>System Page</li>
 										<li>Galaxy Map</li>
@@ -437,6 +487,8 @@
 					<div>| type = <output id="biome" name="biome"></output></div>
 					<div>| description = <output id="description"></output></div>
 					<div>| atmosphere = <output id="atmosphere"></output></div>
+					<div>| sky = <output id="sky" name="sky"></output></div>
+					<div>| grass = <output id="grass" name="grass"></output></div>
 					<div>| terrain = <output id="terrain"></output></div>
 					<div>| weather = <output id="weather"></output></div>
 					<div>| resources = <output id="resourceList"></output></div>
@@ -448,6 +500,8 @@
 					<div>| civilized = <output id='civilized'></output></div>
 					<div>| discoveredlink = <output id='discoveredlink'></output></div>
 					<div>| discovered = <output id='discovered' name="discovered"></output></div>
+					<div>| documentedlink = <output id='documentedlink'></output></div>
+					<div>| documented = <output id='documented'></output></div>
 					<div>| release = <output id='release1' name="release"></output></div>
 					<div>}}</div>
 					<div>'''<output id='name1' name="name"></output>''' is a moon.</div>
@@ -481,14 +535,14 @@
 					<br>
 
 					<div>==Documented Bases==</div>
-					<div>{{CARGOBasesPlanet|{{PAGENAME}}}}</div>
+					<div>{{CARGOBasesMoon|{{PAGENAME}}}}</div>
 					<br>
 
 					<div>==Documented Multi-Tool Sites==</div>
-					<div>{{CARGOMTPlanetShort|planet={{PAGENAME}}}}</div>
+					<div>{{CARGOMTMoonShort|planet={{PAGENAME}}}}</div>
 					<br>
 
-					<div>==Notable Locations / Waypoints==</div>
+					<div>==Notable Locations==</div>
 					<div><output id='locations'></output></div>
 					<br>
 
@@ -496,47 +550,21 @@
 					<div>===Fauna===</div>
 					<div>* There <output id="faunaSentencePlural"></output> <output id="faunaNumberSentence"
 							name="faunaNumber"></output> fauna on this moon</div>
-					<div>{| class="article-table" style="text-align:center; width:100%; max-width: 1250px"</div>
-					<div>|-</div>
-					<div>!style="background-color:#2f4f4f; width:150px"|Image</div>
-					<div>!style="background-color:#2f4f4f"|Name</div>
-					<div>!style="background-color:#2f4f4f"|Ecosystem</div>
-					<div>!style="background-color:#2f4f4f"|Genus</div>
-					<div>!style="background-color:#2f4f4f"|Height</div>
-					<div>!style="background-color:#2f4f4f"|Weight</div>
-					<div>!style="background-color:#2f4f4f"|Discovered by</div>
+					<div>&lt;div class="fauna-grid"&gt;</div>
 					<div id="creatures"></div>
-					<div>|}</div>
+					<div>&lt;/div&gt;</div>
 					<br>
 
 					<div>===Flora===</div>
-					<div>{| class="article-table" style="text-align:center; width:100%; max-width: 1250px"</div>
-					<div>|-</div>
-					<div>!style="background-color:#2f4f4f; width:150px"|Image</div>
-					<div>!style="background-color:#2f4f4f"|Name</div>
-					<div>!style="background-color:#2f4f4f"|Age</div>
-					<div>!style="background-color:#2f4f4f"|Root Structure</div>
-					<div>!style="background-color:#2f4f4f"|Nutrient Source</div>
-					<div>!style="background-color:#2f4f4f"|Notes</div>
-					<div>!style="background-color:#2f4f4f"|Elements</div>
-					<div>!style="background-color:#2f4f4f"|Discovered by</div>
+					<div>&lt;div class="flora-grid"&gt;</div>
 					<div id="plants"></div>
-					<div>|}</div>
-					<div></div>
+					<div>&lt;/div&gt;</div>
 					<br>
 
 					<div>==Minerals==</div>
-					<div>{| class="article-table" style="text-align:center; width:100%; max-width: 1250px"</div>
-					<div>|-</div>
-					<div>!style="background-color:#2f4f4f; width:150px"|Image</div>
-					<div>!style="background-color:#2f4f4f"|Name</div>
-					<div>!style="background-color:#2f4f4f"|Metal Content</div>
-					<div>!style="background-color:#2f4f4f"|Formation Process</div>
-					<div>!style="background-color:#2f4f4f"|Notes</div>
-					<div>!style="background-color:#2f4f4f"|Elements</div>
-					<div>!style="background-color:#2f4f4f"|Discovered by</div>
+					<div>&lt;div class="mineral-grid"&gt;</div>
 					<div id="minerals"></div>
-					<div>|}</div>
+					<div>&lt;/div&gt;</div>
 					<br>
 
 					<div>==Sentinels==</div>
@@ -554,8 +582,21 @@
 
 					<div>==Gallery==</div>
 					<div>&lt;gallery&gt;</div>
-					<div><output id="galleryCode"></output></div>
+					<div><output id="moonGalleryCode"></output></div>
 					<div>&lt;/gallery&gt;</div>
+					<br>
+
+					<div>==Planet==</div>
+					<div>&lt;gallery&gt;</div>
+					<div><output id="planetGalleryCode"></output></div>
+					<div>&lt;/gallery&gt;</div>
+					<br>
+
+					<div>==Location==</div>
+					<div>&lt;gallery&gt;</div>
+					<div><output id="locationGalleryCode"></output></div>
+					<div>&lt;/gallery&gt;</div>
+					<div id="galleryCode" style="display:none"></div>
 				</div>
 			</div>
 		</main>
